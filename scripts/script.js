@@ -38,6 +38,9 @@ function playOneRound(playerSelection, computerSelection)
         else {
             return "You Won! Scissors beats Paper!";
         }
+    }
+    else {
+        return "Pick a valid choice!";
     }  
 }
 

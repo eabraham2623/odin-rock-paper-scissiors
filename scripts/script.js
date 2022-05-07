@@ -1,3 +1,4 @@
+// Computer randomly picks Rock, Paper, or Scissors
 function computerPlay() {
     let choiceList = ["Rock", "Paper", "Scissors"];
     let randomChoice = Math.floor(Math.random() * 3);
@@ -7,6 +8,7 @@ function computerPlay() {
 
 function playOneRound(playerSelection, computerSelection) 
 {
+    // lowercasing player and computer selection to accept different case choices
     let playerLowerCase = playerSelection.toLowerCase();
     let computerLowerCase = computerSelection.toLowerCase();
 
@@ -44,6 +46,7 @@ function playOneRound(playerSelection, computerSelection)
     }  
 }
 
+// Best of 5 game
 function game() 
 {
     let playerScore = 0;
@@ -52,23 +55,29 @@ function game()
     for (let i = 0; i < 5; i++)
     {
         let playerPromptChoice = prompt("Choose Rock, Paper, or Scissors");
+        // Result of one round is stored
         let result = playOneRound(playerPromptChoice, computerPlay());
         console.log(result);
         if (result.includes("Lose"))
         {
+            // Increment computer score if player loses
             computerScore++;
         }
         else if (result.includes("Won"))
         {
+            // Increment computer score if player wins
             playerScore++;
         }
         else {
+            // decrement if iterator if tie or given invalid player choice
             i--;
         }
+        // print running score
         console.log("Player Score: " + playerScore);
         console.log("Computer Score: " + computerScore + "\n");
     }
 
+    // Print final game result
     if (playerScore > computerScore)
     {
         console.log("You won the game!")
@@ -79,4 +88,5 @@ function game()
     }
 }
 
+// MAIN
 game();

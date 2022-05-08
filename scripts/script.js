@@ -1,16 +1,18 @@
+const rockBtn = document.querySelector('button');
+const btns = document.querySelectorAll('button')
+
 // Computer randomly picks Rock, Paper, or Scissors
 function computerPlay() {
     let choiceList = ["Rock", "Paper", "Scissors"];
     let randomChoice = Math.floor(Math.random() * 3);
-
     return choiceList[randomChoice];
 }
 
-function playOneRound(playerSelection, computerSelection) 
+function playOneRound(playerSelection) 
 {
     // lowercasing player and computer selection to accept different case choices
     let playerLowerCase = playerSelection.toLowerCase();
-    let computerLowerCase = computerSelection.toLowerCase();
+    let computerLowerCase = computerPlay().toLowerCase();
 
     if (playerLowerCase == computerLowerCase)
     {
@@ -46,7 +48,30 @@ function playOneRound(playerSelection, computerSelection)
     }  
 }
 
+// Added event listener where button's inner text is used when playing one round
+// function event handler is used here to invoke playOneRound function
+function addClickEventListener(clickObject)
+{
+    clickObject.addEventListener('click', function(event) {
+        playOneRound(clickObject.innerText);
+    });
+}
+
+// add an click event listener for each button
+function addEventListenersToList(list)
+{
+    for (let i = 0; i < list.length; i++)
+    {
+        addClickEventListener(list[i]);
+    }
+}
+
+addEventListenersToList(btns);
+
+
+
 // Best of 5 game
+/*
 function game() 
 {
     let playerScore = 0;
@@ -87,6 +112,7 @@ function game()
         console.log("You lost the game!")
     }
 }
+*/
 
 // MAIN
-game();
+//game();

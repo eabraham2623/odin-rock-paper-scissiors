@@ -1,5 +1,34 @@
 const rockBtn = document.querySelector('button');
-const btns = document.querySelectorAll('button')
+const btns = document.querySelectorAll('button');
+const resultArea = document.querySelector('.running-score');
+const resultMessage = document.createElement('h5');
+
+function capitalize(str)
+{
+    let upperCaseFirst = str.charAt(0).toUpperCase();
+    let strLength = str.length;
+
+    return upperCaseFirst + str.substring(1, strLength);
+}
+
+function showTie(tieChoice)
+{
+    resultMessage.textContent = "It's a Tie! Both of you chose " + capitalize(tieChoice) + "!";
+    resultArea.appendChild(resultMessage);
+    
+}
+
+function showLoss(playerChoice, computerChoice)
+{
+    resultMessage.textContent = "You Lose! " + capitalize(computerChoice) + " beats " + capitalize(playerChoice);
+    resultArea.appendChild(resultMessage);
+}
+
+function showWin()
+{
+    resultMessage.textContent = "You Win! " + capitalize(playerChoice) + " beats " + capitalize(computerChoice);
+    resultArea.appendChild(resultMessage);
+}
 
 // Computer randomly picks Rock, Paper, or Scissors
 function computerPlay() {
@@ -16,30 +45,37 @@ function playOneRound(playerSelection)
 
     if (playerLowerCase == computerLowerCase)
     {
+        showTie(playerLowerCase);
         return "It's a Tie! Both of you chose " + playerLowerCase + "!";
     }
 
     if (playerLowerCase == "rock") {
         if (computerLowerCase == "paper") {
+            showLoss(playerLowerCase, computerLowerCase);
             return "You Lose! Paper beats Rock";
         }
         else {
+            showWin(playerLowerCase, computerLowerCase);
             return "You Won! Rock beats Scissors!";
         }
     }
     else if (playerLowerCase == "paper") {
         if (computerLowerCase == "rock") {
+            showWin(playerLowerCase, computerLowerCase);
             return "You Won! Paper beats Rock";
         }
         else {
+            showLoss(playerLowerCase, computerLowerCase);
             return "You Lose! Scissors beats Paper!";
         }
     }
     else if (playerLowerCase == "scissors") {
         if (computerLowerCase == "rock") {
+            showLoss(playerLowerCase, computerLowerCase);
             return "You Lose! Rock beats Scissors!";
         }
         else {
+            showWin(playerLowerCase, computerLowerCase);
             return "You Won! Scissors beats Paper!";
         }
     }
@@ -57,7 +93,7 @@ function addClickEventListener(clickObject)
     });
 }
 
-// add an click event listener for each button
+// add a click event listener for each button
 function addEventListenersToList(list)
 {
     for (let i = 0; i < list.length; i++)

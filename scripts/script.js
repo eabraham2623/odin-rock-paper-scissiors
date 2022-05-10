@@ -1,7 +1,28 @@
 const rockBtn = document.querySelector('button');
 const btns = document.querySelectorAll('button');
-const resultArea = document.querySelector('.running-score');
-const resultMessage = document.createElement('h5');
+const resultArea = document.querySelector('.feedback-section');
+const resultMessage = document.createElement('h3');
+
+// Added event listener where button's inner text is used when playing one round
+// function event handler is used here to invoke playOneRound function
+function addClickEventListener(clickObject)
+{
+    clickObject.addEventListener('click', function(event) {
+        playOneRound(clickObject.innerText);
+    });
+}
+
+// add a click event listener for each button
+function addEventListenersToList(list)
+{
+    for (let i = 0; i < list.length; i++)
+    {
+        addClickEventListener(list[i]);
+    }
+}
+
+addEventListenersToList(btns);
+
 
 function capitalize(str)
 {
@@ -24,7 +45,7 @@ function showLoss(playerChoice, computerChoice)
     resultArea.appendChild(resultMessage);
 }
 
-function showWin()
+function showWin(playerChoice, computerChoice)
 {
     resultMessage.textContent = "You Win! " + capitalize(playerChoice) + " beats " + capitalize(computerChoice);
     resultArea.appendChild(resultMessage);
@@ -83,27 +104,6 @@ function playOneRound(playerSelection)
         return "Pick a valid choice!";
     }  
 }
-
-// Added event listener where button's inner text is used when playing one round
-// function event handler is used here to invoke playOneRound function
-function addClickEventListener(clickObject)
-{
-    clickObject.addEventListener('click', function(event) {
-        playOneRound(clickObject.innerText);
-    });
-}
-
-// add a click event listener for each button
-function addEventListenersToList(list)
-{
-    for (let i = 0; i < list.length; i++)
-    {
-        addClickEventListener(list[i]);
-    }
-}
-
-addEventListenersToList(btns);
-
 
 
 // Best of 5 game

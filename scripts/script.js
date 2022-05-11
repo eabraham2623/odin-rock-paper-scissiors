@@ -82,6 +82,7 @@ function capitalize(str)
 
 function showTie(tieChoice)
 {
+    score.style.display = "block";
     resultMessage.textContent = "It's a Tie! Both of you chose " + capitalize(tieChoice) + "!";
     resultArea.appendChild(resultMessage);
     
@@ -92,7 +93,7 @@ function showLoss(playerChoice, computerChoice)
     computerScore.innerText = parseInt(computerScore.innerText) + 1;
     if (checkComputerWonGame(computerScore))
     {
-        resultMessage.textContent = "You Lost :( Give it another shot??"
+        resultMessage.textContent = "You Lost with " + capitalize(playerChoice) + " :( Give it another shot??"
         resultMessage.appendChild(resultMessage);
     }
     else
@@ -107,7 +108,7 @@ function showWin(playerChoice, computerChoice)
     playerScore.innerText = parseInt(playerScore.innerText) + 1;
     if (checkPlayerWonGame(playerScore))
     {
-        resultMessage.textContent = "You Won the Game! Play Again?"
+        resultMessage.textContent = "You Won the Game with " + capitalize(playerChoice) + "! Play Again?"
         resultMessage.appendChild(resultMessage);
     }
     else 

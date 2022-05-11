@@ -2,6 +2,13 @@ const rockBtn = document.querySelector('button');
 const btns = document.querySelectorAll('button');
 const resultArea = document.querySelector('.feedback-section');
 const resultMessage = document.createElement('h3');
+const score = document.querySelector('.scores');
+const playerScore = document.querySelector('#playerScore');
+const computerScore = document.querySelector('#computerScore');
+const playerWon = document.createElement('h2');
+const computerWon = document.createElement('h2');
+
+console.log(parseInt(playerScore) + 1);
 
 // Added event listener where button's inner text is used when playing one round
 // function event handler is used here to invoke playOneRound function
@@ -23,6 +30,47 @@ function addEventListenersToList(list)
 
 addEventListenersToList(btns);
 
+function resetScore()
+{
+    playerScore.innerText = "0";
+    computerScore.innerText = "0";
+}
+
+function checkPlayerWonGame(playerScore)
+{
+    if (playerScore.innerText == "5")
+    {
+        score.style.display = "none";
+        resetScore();
+        return true;
+    }
+    else 
+    {
+        score.style.display = "block";
+        return false;
+    }
+}
+
+function checkComputerWonGame(computerScore)
+{
+    if (computerScore.innerText == "5")
+    {
+        score.style.display = "none";
+        resetScore();
+        return true;
+    }
+    else 
+    {
+        score.style.display = "block";
+        return false;
+    }
+}
+
+function resetScore()
+{
+    computerScore.innerText = "0";
+    playerScore.innerText = "0";
+}
 
 function capitalize(str)
 {
@@ -41,14 +89,33 @@ function showTie(tieChoice)
 
 function showLoss(playerChoice, computerChoice)
 {
-    resultMessage.textContent = "You Lose! " + capitalize(computerChoice) + " beats " + capitalize(playerChoice);
-    resultArea.appendChild(resultMessage);
+    computerScore.innerText = parseInt(computerScore.innerText) + 1;
+    if (checkComputerWonGame(computerScore))
+    {
+        resultMessage.textContent = "You Lost :( Give it another shot??"
+        resultMessage.appendChild(resultMessage);
+    }
+    else
+    {
+        resultMessage.textContent = "You Lose! " + capitalize(computerChoice) + " beats " + capitalize(playerChoice);
+        resultArea.appendChild(resultMessage);
+    }
 }
 
 function showWin(playerChoice, computerChoice)
 {
-    resultMessage.textContent = "You Win! " + capitalize(playerChoice) + " beats " + capitalize(computerChoice);
-    resultArea.appendChild(resultMessage);
+    playerScore.innerText = parseInt(playerScore.innerText) + 1;
+    if (checkPlayerWonGame(playerScore))
+    {
+        resultMessage.textContent = "You Won the Game! Play Again?"
+        resultMessage.appendChild(resultMessage);
+    }
+    else 
+    {
+        resultMessage.textContent = "You Win! " + capitalize(playerChoice) + " beats " + capitalize(computerChoice);
+        resultArea.appendChild(resultMessage);
+    }
+
 }
 
 // Computer randomly picks Rock, Paper, or Scissors

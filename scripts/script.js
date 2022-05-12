@@ -94,7 +94,7 @@ function showLoss(playerChoice, computerChoice)
     if (checkComputerWonGame(computerScore))
     {
         resultMessage.textContent = "You Lost with " + capitalize(playerChoice) + " :( Give it another shot??"
-        resultMessage.appendChild(resultMessage);
+        resultArea.appendChild(resultMessage);
     }
     else
     {
@@ -109,7 +109,7 @@ function showWin(playerChoice, computerChoice)
     if (checkPlayerWonGame(playerScore))
     {
         resultMessage.textContent = "You Won the Game with " + capitalize(playerChoice) + "! Play Again?"
-        resultMessage.appendChild(resultMessage);
+        resultArea.appendChild(resultMessage);
     }
     else 
     {

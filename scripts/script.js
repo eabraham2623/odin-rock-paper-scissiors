@@ -1,4 +1,3 @@
-const rockBtn = document.querySelector('button');
 const btns = document.querySelectorAll('button');
 const resultArea = document.querySelector('.feedback-section');
 const resultMessage = document.createElement('h3');
@@ -7,8 +6,6 @@ const playerScore = document.querySelector('#playerScore');
 const computerScore = document.querySelector('#computerScore');
 const playerWon = document.createElement('h2');
 const computerWon = document.createElement('h2');
-
-console.log(parseInt(playerScore) + 1);
 
 // Added event listener where button's inner text is used when playing one round
 // function event handler is used here to invoke playOneRound function
@@ -19,7 +16,7 @@ function addClickEventListener(clickObject)
     });
 }
 
-// add a click event listener for each button
+// add a click event listener for each 
 function addEventListenersToList(list)
 {
     for (let i = 0; i < list.length; i++)
@@ -28,6 +25,7 @@ function addEventListenersToList(list)
     }
 }
 
+// add a click event listener for each button
 addEventListenersToList(btns);
 
 function resetScore()
